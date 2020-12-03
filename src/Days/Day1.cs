@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode2020.Days
+﻿using BenchmarkDotNet.Attributes;
+
+namespace AdventOfCode2020.Days
 {
     public class Day1 : BaseDay<int, int>
     {
@@ -6,6 +8,8 @@
 
         private const int Target = 2020;
 
+        [Benchmark]
+        [ArgumentsSource(nameof(Input))]
         public override int Part1(int[] entries)
         {
             for (int i = 0; i < entries.Length; i++)
@@ -22,6 +26,8 @@
             return default;
         }
 
+        [Benchmark]
+        [ArgumentsSource(nameof(Input))]
         public override int Part2(int[] entries)
         {
             for (int i = 0; i < entries.Length; i++)

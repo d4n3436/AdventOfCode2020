@@ -1,9 +1,13 @@
-﻿namespace AdventOfCode2020.Days
+﻿using BenchmarkDotNet.Attributes;
+
+namespace AdventOfCode2020.Days
 {
     public class Day2 : BaseDay<string, int>
     {
         public override int Day => 2;
 
+        [Benchmark]
+        [ArgumentsSource(nameof(Input))]
         public override int Part1(string[] list)
         {
             int valid = 0;
@@ -30,6 +34,8 @@
             return valid;
         }
 
+        [Benchmark]
+        [ArgumentsSource(nameof(Input))]
         public override int Part2(string[] list)
         {
             int valid = 0;
