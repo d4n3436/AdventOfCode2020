@@ -30,8 +30,7 @@ namespace AdventOfCode2020
                         var days = typeof(Program).Assembly
                             .GetTypes()
                             .Where(x => x.IsClass && !x.IsAbstract && IsSubclassOfGeneric(typeof(BaseDay<,>), x))
-                            .Select(Activator.CreateInstance)
-                            .ToArray();
+                            .Select(Activator.CreateInstance);
 
                         foreach (var day in days)
                         {

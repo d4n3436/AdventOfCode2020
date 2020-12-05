@@ -52,7 +52,21 @@ namespace AdventOfCode2020.Days
 
         private TInput[] GetInput()
         {
-            string[] rawInput = File.ReadAllLines($"Inputs/day{Day}.txt");
+            if (!File.Exists($"Inputs/day{Day}.txt"))
+            {
+                return Array.Empty<TInput>();
+            }
+
+            string[] rawInput;
+            try
+            {
+                rawInput = File.ReadAllLines($"Inputs/day{Day}.txt");
+            }
+            catch (Exception)
+            {
+                return Array.Empty<TInput>();
+            }
+
             if (rawInput.Length == 0)
             {
                 return Array.Empty<TInput>();
