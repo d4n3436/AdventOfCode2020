@@ -4,37 +4,26 @@ using BenchmarkDotNet.Attributes;
 
 namespace AdventOfCode2020.Days
 {
-    public class Day4 : BaseDay<string, int>
+    public class Day4 : BaseDay<int>
     {
         public override int Day => 4;
 
         [Benchmark]
         [ArgumentsSource(nameof(Input))]
-        public override int Part1(string[] input) => GetValidPassports(input, false);
+        public override int Part1(string input) => GetValidPassports(input.Split("\n\n", StringSplitOptions.RemoveEmptyEntries), false);
 
         [Benchmark]
         [ArgumentsSource(nameof(Input))]
-        public override int Part2(string[] input) => GetValidPassports(input, true);
+        public override int Part2(string input) => GetValidPassports(input.Split("\n\n", StringSplitOptions.RemoveEmptyEntries), true);
 
         private static int GetValidPassports(string[] input, bool strict)
         {
-            string passport = "";
             int valid = 0;
 
             for (int i = 0; i < input.Length; i++)
             {
-                // I had to do it this way because the input was already split.
-                if (input[i].Length != 0)
-                {
-                    passport += $" {input[i]}";
-                }
-                else
-                {
-                    if (IsValid(passport, strict))
-                        valid++;
-
-                    passport = "";
-                }
+                if (IsValid(input[i].Replace('\n', ' '), strict))
+                    valid++;
             }
 
             return valid;
@@ -42,13 +31,13 @@ namespace AdventOfCode2020.Days
 
         private static bool IsValid(string passport, bool strict)
         {
-            var split = passport.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            string[] split = passport.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             var dict = new Dictionary<string, string>(7);
 
             int fieldCount = 0;
             for (int i = 0; i < split.Length; i++)
             {
-                var split2 = split[i].Split(':');
+                string[] split2 = split[i].Split(':');
                 dict.Add(split2[0], split2[1]);
                 if (Array.Exists(_fields, x => x == split2[0]))
                     fieldCount++;
@@ -115,7 +104,7 @@ namespace AdventOfCode2020.Days
 
         private static bool IsDigit(string s)
         {
-            for (var i = 0; i < s.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
                 if (s[i] < '0' || s[i] > '9')
                     return false;

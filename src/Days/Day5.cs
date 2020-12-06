@@ -3,19 +3,20 @@ using BenchmarkDotNet.Attributes;
 
 namespace AdventOfCode2020.Days
 {
-    public class Day5 : BaseDay<string, int>
+    public class Day5 : BaseDay<int>
     {
         public override int Day => 5;
 
         [Benchmark]
         [ArgumentsSource(nameof(Input))]
-        public override int Part1(string[] input)
+        public override int Part1(string input)
         {
+            string[] lines = DecodeAllSeats(input).Split('\n', StringSplitOptions.RemoveEmptyEntries);
             int max = 0;
 
-            for (int i = 0; i < input.Length; i++)
+            for (int i = 0; i < lines.Length; i++)
             {
-                int id = DecodeSeat(input[i]);
+                int id = Convert.ToInt32(lines[i], 2);
                 if (id > max)
                     max = id;
             }
@@ -25,19 +26,23 @@ namespace AdventOfCode2020.Days
 
         [Benchmark]
         [ArgumentsSource(nameof(Input))]
-        public override int Part2(string[] input)
+        public override int Part2(string input)
         {
+            string[] lines = DecodeAllSeats(input).Split('\n', StringSplitOptions.RemoveEmptyEntries);
             int sum = 0;
-            int min = input.Length;
+            int min = lines.Length;
             int max = 0;
 
-            for (int i = 0; i < input.Length; i++)
+            for (int i = 0; i < lines.Length; i++)
             {
-                int id = DecodeSeat(input[i]);
+                int id = Convert.ToInt32(lines[i], 2);
+
                 if (id > max)
                     max = id;
+
                 if (id < min)
                     min = id;
+
                 sum += id;
             }
 
@@ -46,13 +51,12 @@ namespace AdventOfCode2020.Days
             return seat;
         }
 
-        private static int DecodeSeat(string seat)
+        private static string DecodeAllSeats(string seat)
         {
-            return Convert.ToInt32(seat
-                .Replace('L', '0')
+            return seat.Replace('L', '0')
                 .Replace('B', '1')
                 .Replace('F', '0')
-                .Replace('R', '1'), 2);
+                .Replace('R', '1');
         }
     }
 }

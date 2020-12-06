@@ -1,20 +1,23 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿using System;
+using BenchmarkDotNet.Attributes;
 
 namespace AdventOfCode2020.Days
 {
-    public class Day3 : BaseDay<string, int>
+    public class Day3 : BaseDay<int>
     {
         public override int Day => 3;
 
         [Benchmark]
         [ArgumentsSource(nameof(Input))]
-        public override int Part1(string[] map)
-            => GetEncounteredTrees(map, 3, 1);
+        public override int Part1(string input)
+            => GetEncounteredTrees(input.Split('\n', StringSplitOptions.RemoveEmptyEntries), 3, 1);
 
         [Benchmark]
         [ArgumentsSource(nameof(Input))]
-        public override int Part2(string[] map)
+        public override int Part2(string input)
         {
+            string[] map = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+
             var slopes = new[]
             {
                 (1, 1),
@@ -42,9 +45,7 @@ namespace AdventOfCode2020.Days
             for (int x = 0; x < map.Length; x += down)
             {
                 if (map[x][y] == '#')
-                {
                     count++;
-                }
 
                 y += right;
                 y %= map[x].Length;

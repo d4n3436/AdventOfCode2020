@@ -29,13 +29,13 @@ namespace AdventOfCode2020
                     case 's':
                         var days = typeof(Program).Assembly
                             .GetTypes()
-                            .Where(x => x.IsClass && !x.IsAbstract && IsSubclassOfGeneric(typeof(BaseDay<,>), x))
-                            .Select(Activator.CreateInstance);
+                            .Where(x => x.IsClass && !x.IsAbstract && typeof(IDay).IsAssignableFrom(x))
+                            .Select(x => (IDay)Activator.CreateInstance(x))
+                            .OrderBy(x => x?.Day);
 
                         foreach (var day in days)
                         {
-                            var method = day.GetType().GetMethod("Solve");
-                            method?.Invoke(day, null);
+                            day?.Solve();
                         }
 
                         break;
@@ -53,20 +53,6 @@ namespace AdventOfCode2020
             Console.WriteLine();
             Console.Write("Press any key to exit...");
             Console.ReadKey(false);
-        }
-
-        private static bool IsSubclassOfGeneric(Type genericType, Type typeToCheck)
-        {
-            while (typeToCheck != null && typeToCheck != typeof(object))
-            {
-                var cur = typeToCheck.IsGenericType ? typeToCheck.GetGenericTypeDefinition() : typeToCheck;
-                if (genericType == cur)
-                {
-                    return true;
-                }
-                typeToCheck = typeToCheck.BaseType;
-            }
-            return false;
         }
     }
 }

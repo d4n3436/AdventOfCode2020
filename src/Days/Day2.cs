@@ -1,15 +1,17 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿using System;
+using BenchmarkDotNet.Attributes;
 
 namespace AdventOfCode2020.Days
 {
-    public class Day2 : BaseDay<string, int>
+    public class Day2 : BaseDay<int>
     {
         public override int Day => 2;
 
         [Benchmark]
         [ArgumentsSource(nameof(Input))]
-        public override int Part1(string[] list)
+        public override int Part1(string input)
         {
+            string[] list = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
             int valid = 0;
 
             for (int i = 0; i < list.Length; i++)
@@ -20,15 +22,11 @@ namespace AdventOfCode2020.Days
                 for (int j = 0; j < entry.Password.Length; j++)
                 {
                     if (entry.Password[j] == entry.Letter)
-                    {
                         count++;
-                    }
                 }
 
                 if (count >= entry.Number1 && count <= entry.Number2)
-                {
                     valid++;
-                }
             }
 
             return valid;
@@ -36,8 +34,9 @@ namespace AdventOfCode2020.Days
 
         [Benchmark]
         [ArgumentsSource(nameof(Input))]
-        public override int Part2(string[] list)
+        public override int Part2(string input)
         {
+            string[] list = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
             int valid = 0;
 
             for (int i = 0; i < list.Length; i++)

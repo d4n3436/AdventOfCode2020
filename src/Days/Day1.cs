@@ -1,8 +1,9 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿using System;
+using BenchmarkDotNet.Attributes;
 
 namespace AdventOfCode2020.Days
 {
-    public class Day1 : BaseDay<int, int>
+    public class Day1 : BaseDay<int>
     {
         public override int Day => 1;
 
@@ -10,8 +11,10 @@ namespace AdventOfCode2020.Days
 
         [Benchmark]
         [ArgumentsSource(nameof(Input))]
-        public override int Part1(int[] entries)
+        public override int Part1(string input)
         {
+            int[] entries = Array.ConvertAll(input.Split('\n', StringSplitOptions.RemoveEmptyEntries), int.Parse);
+
             for (int i = 0; i < entries.Length; i++)
             {
                 for (int j = 0; j < entries.Length; j++)
@@ -28,8 +31,10 @@ namespace AdventOfCode2020.Days
 
         [Benchmark]
         [ArgumentsSource(nameof(Input))]
-        public override int Part2(int[] entries)
+        public override int Part2(string input)
         {
+            int[] entries = Array.ConvertAll(input.Split('\n', StringSplitOptions.RemoveEmptyEntries), int.Parse);
+
             for (int i = 0; i < entries.Length; i++)
             {
                 for (int j = 0; j < entries.Length; j++)
