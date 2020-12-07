@@ -3,6 +3,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace AdventOfCode2020.Days
 {
+    [MemoryDiagnoser]
     public class Day5 : BaseDay<int>
     {
         public override int Day => 5;
