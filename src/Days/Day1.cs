@@ -11,10 +11,9 @@ namespace AdventOfCode2020.Days
         private const int Target = 2020;
 
         [Benchmark]
-        [ArgumentsSource(nameof(Input))]
-        public override int Part1(string input)
+        public override int Part1()
         {
-            int[] entries = Array.ConvertAll(input.Split('\n', StringSplitOptions.RemoveEmptyEntries), int.Parse);
+            int[] entries = Array.ConvertAll(Input.Split('\n', StringSplitOptions.RemoveEmptyEntries), int.Parse);
 
             for (int i = 0; i < entries.Length; i++)
             {
@@ -31,10 +30,9 @@ namespace AdventOfCode2020.Days
         }
 
         [Benchmark]
-        [ArgumentsSource(nameof(Input))]
-        public override int Part2(string input)
+        public override int Part2()
         {
-            int[] entries = Array.ConvertAll(input.Split('\n', StringSplitOptions.RemoveEmptyEntries), int.Parse);
+            int[] entries = Array.ConvertAll(Input.Split('\n', StringSplitOptions.RemoveEmptyEntries), int.Parse);
 
             for (int i = 0; i < entries.Length; i++)
             {

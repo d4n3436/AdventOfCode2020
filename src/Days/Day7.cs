@@ -10,12 +10,10 @@ namespace AdventOfCode2020.Days
         public override int Day => 7;
 
         [Benchmark]
-        [ArgumentsSource(nameof(Input))]
-        public override int Part1(string input) => GetShinyBagCount(ParseBags(input));
+        public override int Part1() => GetShinyBagCount(ParseBags(Input));
 
         [Benchmark]
-        [ArgumentsSource(nameof(Input))]
-        public override int Part2(string input) => GetBagCount("shiny gold", ParseBags(input)) - 1;
+        public override int Part2() => GetBagCount("shiny gold", ParseBags(Input)) - 1;
 
         private static Dictionary<string, Dictionary<string, int>> ParseBags(string input)
         {

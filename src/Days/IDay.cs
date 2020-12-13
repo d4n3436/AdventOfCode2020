@@ -9,16 +9,14 @@
         /// <summary>
         /// Gets the result of the part 1 of this day.
         /// </summary>
-        /// <param name="input">The input.</param>
         /// <returns>The result.</returns>
-        public TResult Part1(string input);
+        public TResult Part1();
 
         /// <summary>
         /// Gets the result of the part 2 of this day.
         /// </summary>
-        /// <param name="input">The input.</param>
         /// <returns>The result.</returns>
-        public TResult Part2(string input);
+        public TResult Part2();
     }
 
     /// <summary>

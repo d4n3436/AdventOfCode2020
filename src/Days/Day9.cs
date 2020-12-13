@@ -9,21 +9,18 @@ namespace AdventOfCode2020.Days
         public override int Day => 9;
 
         [Benchmark]
-        [ArgumentsSource(nameof(Input))]
-        public override long Part1(string input)
+        public override long Part1()
         {
-            var arr = Array.ConvertAll(input.Split('\n', StringSplitOptions.RemoveEmptyEntries), long.Parse);
+            long[] arr = Array.ConvertAll(Input.Split('\n', StringSplitOptions.RemoveEmptyEntries), long.Parse);
 
             return FindInvalid(arr, 25);
         }
 
         [Benchmark]
-        [ArgumentsSource(nameof(Input))]
-        public override long Part2(string input)
+        public override long Part2()
         {
-            var arr = Array.ConvertAll(input.Split('\n', StringSplitOptions.RemoveEmptyEntries), long.Parse);
-            long invalidIndex = FindInvalid(arr, 25);
-
+            long[] arr = Array.ConvertAll(Input.Split('\n', StringSplitOptions.RemoveEmptyEntries), long.Parse);
+            long invalid = FindInvalid(arr, 25);
             long[] precomputed = Precompute(arr);
 
             for (int i = 0; i < arr.Length; i++)
@@ -32,7 +29,7 @@ namespace AdventOfCode2020.Days
                 {
                     long sum = RangeSum(precomputed, i, j);
 
-                    if (sum != invalidIndex) continue;
+                    if (sum != invalid) continue;
 
                     long min = sum;
                     long max = sum;

@@ -9,10 +9,9 @@ namespace AdventOfCode2020.Days
         public override int Day => 2;
 
         [Benchmark]
-        [ArgumentsSource(nameof(Input))]
-        public override int Part1(string input)
+        public override int Part1()
         {
-            string[] list = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            string[] list = Input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
             int valid = 0;
 
             for (int i = 0; i < list.Length; i++)
@@ -34,10 +33,9 @@ namespace AdventOfCode2020.Days
         }
 
         [Benchmark]
-        [ArgumentsSource(nameof(Input))]
-        public override int Part2(string input)
+        public override int Part2()
         {
-            string[] list = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            string[] list = Input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
             int valid = 0;
 
             for (int i = 0; i < list.Length; i++)

@@ -9,10 +9,9 @@ namespace AdventOfCode2020.Days
         public override int Day => 5;
 
         [Benchmark]
-        [ArgumentsSource(nameof(Input))]
-        public override int Part1(string input)
+        public override int Part1()
         {
-            string[] lines = DecodeAllSeats(input).Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            string[] lines = DecodeAllSeats(Input).Split('\n', StringSplitOptions.RemoveEmptyEntries);
             int max = 0;
 
             for (int i = 0; i < lines.Length; i++)
@@ -26,10 +25,9 @@ namespace AdventOfCode2020.Days
         }
 
         [Benchmark]
-        [ArgumentsSource(nameof(Input))]
-        public override int Part2(string input)
+        public override int Part2()
         {
-            string[] lines = DecodeAllSeats(input).Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            string[] lines = DecodeAllSeats(Input).Split('\n', StringSplitOptions.RemoveEmptyEntries);
             int sum = 0;
             int min = lines.Length;
             int max = 0;

@@ -9,15 +9,13 @@ namespace AdventOfCode2020.Days
         public override int Day => 3;
 
         [Benchmark]
-        [ArgumentsSource(nameof(Input))]
-        public override int Part1(string input)
-            => GetEncounteredTrees(input.Split('\n', StringSplitOptions.RemoveEmptyEntries), 3, 1);
+        public override int Part1()
+            => GetEncounteredTrees(Input.Split('\n', StringSplitOptions.RemoveEmptyEntries), 3, 1);
 
         [Benchmark]
-        [ArgumentsSource(nameof(Input))]
-        public override int Part2(string input)
+        public override int Part2()
         {
-            string[] map = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            string[] map = Input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
 
             var slopes = new[]
             {

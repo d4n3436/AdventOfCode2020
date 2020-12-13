@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 
@@ -14,16 +13,11 @@ namespace AdventOfCode2020.Days
         /// <inheritdoc/>
         public abstract int Day { get; }
 
-        private string _singleInput;
+        public string Input { get; }
 
-        private string SingleInput => _singleInput ??= GetInput();
-
-        public IEnumerable<string> Input
+        protected BaseDay()
         {
-            get
-            {
-                yield return SingleInput;
-            }
+            Input = GetInput();
         }
 
         /// <inheritdoc/>
@@ -33,18 +27,18 @@ namespace AdventOfCode2020.Days
             Console.WriteLine($"Day {Day}");
             Console.WriteLine();
 
-            if (SingleInput == null)
+            if (Input == null)
             {
                 Console.WriteLine($"Error: Could not get the text from the input file. (Inputs/day{Day}.txt)");
             }
             else
             {
                 var sw = Stopwatch.StartNew();
-                TResult part1 = Part1(SingleInput);
+                TResult part1 = Part1();
                 sw.Stop();
 
                 var sw2 = Stopwatch.StartNew();
-                TResult part2 = Part2(SingleInput);
+                TResult part2 = Part2();
                 sw2.Stop();
 
                 Console.WriteLine($"Part 1: {part1}, {sw.Elapsed.TotalMilliseconds}ms");
@@ -75,9 +69,9 @@ namespace AdventOfCode2020.Days
         }
 
         /// <inheritdoc/>
-        public abstract TResult Part1(string input);
+        public abstract TResult Part1();
 
         /// <inheritdoc/>
-        public abstract TResult Part2(string input);
+        public abstract TResult Part2();
     }
 }

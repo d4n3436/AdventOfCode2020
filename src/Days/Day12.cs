@@ -9,10 +9,9 @@ namespace AdventOfCode2020.Days
         public override int Day => 12;
 
         [Benchmark]
-        [ArgumentsSource(nameof(Input))]
-        public override int Part1(string input)
+        public override int Part1()
         {
-            string[] split = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            string[] split = Input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
             char[] directions = { 'N', 'E', 'S', 'W' };
             char currentDir = 'E';
             int ewPos = 0;
@@ -51,9 +50,9 @@ namespace AdventOfCode2020.Days
 
         [Benchmark]
         [ArgumentsSource(nameof(Input))]
-        public override int Part2(string input)
+        public override int Part2()
         {
-            string[] split = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            string[] split = Input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
             int ewPos = 0;
             int nsPos = 0;
             int wpEwPos = 10;

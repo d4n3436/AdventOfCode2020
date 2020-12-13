@@ -9,10 +9,9 @@ namespace AdventOfCode2020.Days
         public override int Day => 8;
 
         [Benchmark]
-        [ArgumentsSource(nameof(Input))]
-        public override int Part1(string input)
+        public override int Part1()
         {
-            var interpreter = new Interpreter(input);
+            var interpreter = new Interpreter(Input);
             while (!interpreter.InfiniteLoop)
             {
                 interpreter.Step();
@@ -22,10 +21,9 @@ namespace AdventOfCode2020.Days
         }
 
         [Benchmark]
-        [ArgumentsSource(nameof(Input))]
-        public override int Part2(string input)
+        public override int Part2()
         {
-            var interpreter = new Interpreter(input);
+            var interpreter = new Interpreter(Input);
             while (!interpreter.End)
             {
                 interpreter.Step(true);

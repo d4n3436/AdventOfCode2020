@@ -10,12 +10,10 @@ namespace AdventOfCode2020.Days
         public override int Day => 4;
 
         [Benchmark]
-        [ArgumentsSource(nameof(Input))]
-        public override int Part1(string input) => GetValidPassports(input.Split("\n\n", StringSplitOptions.RemoveEmptyEntries), false);
+        public override int Part1() => GetValidPassports(Input.Split("\n\n", StringSplitOptions.RemoveEmptyEntries), false);
 
         [Benchmark]
-        [ArgumentsSource(nameof(Input))]
-        public override int Part2(string input) => GetValidPassports(input.Split("\n\n", StringSplitOptions.RemoveEmptyEntries), true);
+        public override int Part2() => GetValidPassports(Input.Split("\n\n", StringSplitOptions.RemoveEmptyEntries), true);
 
         private static int GetValidPassports(string[] input, bool strict)
         {
