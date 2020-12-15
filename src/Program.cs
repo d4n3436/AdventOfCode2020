@@ -33,9 +33,25 @@ namespace AdventOfCode2020
                             .Select(x => (IDay)Activator.CreateInstance(x))
                             .OrderBy(x => x?.Day);
 
-                        foreach (var day in days)
+                        Console.Write("Any specific day? (Press Enter to skip): ");
+                        string input2 = Console.ReadLine();
+                        if (!string.IsNullOrEmpty(input2))
                         {
-                            day?.Solve();
+                            IDay day;
+                            if (!int.TryParse(input2, out int specificDay) || (day = days.FirstOrDefault(x => x?.Day == specificDay)) == null)
+                            {
+                                Console.WriteLine("Invalid input.");
+                                break;
+                            }
+
+                            day.Solve();
+                        }
+                        else
+                        {
+                            foreach (var day in days)
+                            {
+                                day?.Solve();
+                            }
                         }
 
                         break;
